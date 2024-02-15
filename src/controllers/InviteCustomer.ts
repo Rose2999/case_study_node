@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 import ec_Customer_Supplier_Mapping from "../models/ec_customer_supplier_mapping";
 const invite_customer = async (req: Request, res: Response): Promise<Response<any>> => {
     try {
-      const { supplier_id, customer_id,plan_name } = req.body;
+      const { supplier_id, customer_id,sb_id} = req.body;
       console.log(typeof(supplier_id));
       // Check if the supplier exists
       const supplier = await ec_suppliers.findOne({ where: { id: supplier_id } });
@@ -14,7 +14,8 @@ const invite_customer = async (req: Request, res: Response): Promise<Response<an
       }
   
       // Check if the plan exists
-      const plan = await sub_plan.findOne({ where: { plan_name: plan_name } });
+
+      const plan = await sub_plan.findOne({ where: { sb_id: sb_id } });
       if (!plan) {
         return res.status(404).json({ error: "Plan not found" });
       }
@@ -22,15 +23,16 @@ const invite_customer = async (req: Request, res: Response): Promise<Response<an
       if (!customer) {
         return res.status(404).json({ error: "CUstomer not found" });
       }
-  
+    const findCount=await ec_Customer_Supplier_Mapping.count({ where: { supplier_id:supplier_id,status:"accepted"} });
     
       
       
- 
+    
+    {
         const new_invitee = await ec_Customer_Supplier_Mapping.create({
             supplier_id,
             customer_id,
-            plan_name,
+            sb_id,
             status:"pending"
           });
     if(new_invitee){
@@ -41,12 +43,12 @@ const invite_customer = async (req: Request, res: Response): Promise<Response<an
         return res.status(403).json({ error: 'Enter all neccessary details' });
  
     }
-}
+}}
 catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Error in sending invitation' });
   }
-};
-  
+
+}
   export default invite_customer;
   

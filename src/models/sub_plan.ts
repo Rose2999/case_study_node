@@ -14,6 +14,7 @@ sub_plan.init({
   plan_name: {
     type: DataTypes.STRING,
     allowNull: true,
+    unique:true,
   },
   sub_fee:{
     type:DataTypes.INTEGER,

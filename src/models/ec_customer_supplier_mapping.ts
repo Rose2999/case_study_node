@@ -22,7 +22,7 @@ ec_Customer_Supplier_Mapping.init({
         allowNull: true,
        
       },
-      plan_name:{
+      planId:{
         type:DataTypes.STRING,
         allowNull:true
       },

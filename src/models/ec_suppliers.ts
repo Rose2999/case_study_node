@@ -18,7 +18,7 @@ ec_suppliers.init({
   e_mail:{
     type:DataTypes.STRING,
     allowNull: false,
-    unique:true,
+
   },
   password: {
     type: DataTypes.STRING,
@@ -41,9 +41,10 @@ ec_suppliers.init({
     allowNull: false,
     defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
   },
-  purchased_sub_plan:{
-   type:DataTypes.STRING,
+  plan_id:{
+   type:DataTypes.INTEGER,
    allowNull:true,
+   unique:true,
   },
   createdAt: {
     type: DataTypes.DATE,

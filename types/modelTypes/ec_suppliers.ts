@@ -7,7 +7,7 @@ class EcSuppliers extends Model{
     public profile_pic!:Buffer |null;
     public registration_id?:string;
     public registration_time_stamp?:string;
-    public purchased_sub_plan?:string;
+    public plan_id?:number;
     public createdAt?:Date;
     public updatedAt?:Date;
 }

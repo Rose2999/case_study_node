@@ -5,7 +5,7 @@ import customerRegister from './CustomerRegister';
 
 const register=async(req:Request,res:Response)=>{
       
-    const { full_name ,e_mail, password,profile_pic,user_type,subscription_plan} = req.body;
+    const { full_name ,e_mail, password,profile_pic,user_type} = req.body;
     if (!full_name) {
         return res.status(422).send("no name");
     }
@@ -23,7 +23,7 @@ const register=async(req:Request,res:Response)=>{
     }
     if(user_type=='supplier'||user_type=='Supplier'){
     try{
-    let result= await ec_suppliers.create({full_name:full_name,e_mail:e_mail,password:password,profile_pic:profile_pic,purchased_sub_plan:subscription_plan})
+    let result= await ec_suppliers.create({full_name:full_name,e_mail:e_mail,password:password,profile_pic:profile_pic})
     return res.status(200).send("Supplier registered");
     }
     
@@ -33,7 +33,7 @@ const register=async(req:Request,res:Response)=>{
     }}
     else if(user_type=='superAdmin'){
         try{
-            await ec_suppliers.create({full_name:full_name,e_mail:e_mail,password:password,profile_pic:profile_pic,registration_id:1,purchased_sub_plan:subscription_plan})
+            await ec_suppliers.create({full_name:full_name,e_mail:e_mail,password:password,profile_pic:profile_pic,registration_id:1})
             return res.status(200).send("SuperAdmin registered");
            }
            

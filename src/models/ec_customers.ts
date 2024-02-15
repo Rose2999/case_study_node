@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from 'sequelize';
 import bcrypt from 'bcrypt'
 import sequelize from '../config/sequelize-config'; // Import the Sequelize instance.
 import ec_customer from '../../types/modelTypes/ec_customers';;
-
+ 
 
 ec_customer.init({
   id: {
