@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
 const accept_Request = async (req: Request, res: Response): Promise<Response<any>> => {
     try {
         
-        const { customerId,supplierId,status } = req.body;
+        const { customerId,supplierId} = req.body;
 
         // Check if the customer exists
         const customer = await ec_Customer_Supplier_Mapping.findByPk(customerId);

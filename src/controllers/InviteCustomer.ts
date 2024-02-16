@@ -23,16 +23,26 @@ const invite_customer = async (req: Request, res: Response): Promise<Response<an
       if (!customer) {
         return res.status(404).json({ error: "CUstomer not found" });
       }
-    const findCount=await ec_Customer_Supplier_Mapping.count({ where: { supplier_id:supplier_id,status:"accepted"} });
     
-      
-      
+     const planCapacity = await sub_plan.findOne({
+        attributes: ['no_of_customers'],
+        where: {
+          sb_id: sb_id
+        }
+      });
+      const customerCount = await ec_Customer_Supplier_Mapping.count({
+        where: {
+          supplierId: supplier_id,
+          planId: sb_id,
+          status:"accepted",
+        }});
     
-    {
+        const planCapacityValue = planCapacity ? planCapacity.no_of_customers : 0;
+        if(customerCount<planCapacityValue){
         const new_invitee = await ec_Customer_Supplier_Mapping.create({
-            supplier_id,
-            customer_id,
-            sb_id,
+            supplierId:supplier_id,
+            customerId:customer_id,
+            planId:sb_id,
             status:"pending"
           });
     if(new_invitee){
@@ -40,9 +50,12 @@ const invite_customer = async (req: Request, res: Response): Promise<Response<an
     }
     else{
  
-        return res.status(403).json({ error: 'Enter all neccessary details' });
+        return res.status(404).json({ error: 'Enter all neccessary details' });
  
     }
+}
+else{
+     return res.status(404).json({error:"Customer count exceeded plan capacity"})
 }}
 catch (error) {
     console.error(error);

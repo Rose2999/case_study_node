@@ -44,7 +44,7 @@ ec_suppliers.init({
   plan_id:{
    type:DataTypes.INTEGER,
    allowNull:true,
-   unique:true,
+  unique:true,
   },
   createdAt: {
     type: DataTypes.DATE,

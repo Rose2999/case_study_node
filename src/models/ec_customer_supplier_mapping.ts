@@ -13,18 +13,18 @@ ec_Customer_Supplier_Mapping.init({
     },
     
     supplierId:{
-      type:DataTypes.STRING,
+      type:DataTypes.INTEGER,
       allowNull: true,
-     
+      
     },
     customerId:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull: true,
-       
+        
       },
       planId:{
         type:DataTypes.STRING,
-        allowNull:true
+        allowNull:true,
       },
       status:{
         type:DataTypes.STRING,
@@ -35,6 +35,12 @@ ec_Customer_Supplier_Mapping.init({
         sequelize,
         modelName:'ec_customer_supplier_mapping',
         tableName:'ec_customer_supplier_mapping',
+        indexes: [
+            {
+                unique:true,
+                fields:['supplierId','customerId','planId'],
+            }
+        ]
       });
   
   export default ec_Customer_Supplier_Mapping  ;

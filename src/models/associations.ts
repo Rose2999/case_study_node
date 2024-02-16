@@ -5,20 +5,20 @@ import sub_plan from './sub_plan'
  
 const associations = () => {
     ec_customer.hasMany(ec_Customer_Supplier_Mapping, {
-        foreignKey: 'customer_id',
+        foreignKey: 'customerId',
         sourceKey: 'id',
     })
    ec_Customer_Supplier_Mapping.belongsTo(ec_customer, {
-        foreignKey: 'customer_id',
+        foreignKey: 'customerId',
         targetKey: 'id',
     })
  
     ec_suppliers.hasMany(ec_Customer_Supplier_Mapping,{
-        foreignKey: 'supplier_id',
+        foreignKey: 'supplierId',
         sourceKey: 'id',
     })
     ec_Customer_Supplier_Mapping.belongsTo(ec_suppliers,{
-        foreignKey: 'supplier_id',
+        foreignKey: 'supplierId',
         targetKey: 'id',
     })
     sub_plan.hasMany(ec_suppliers,{

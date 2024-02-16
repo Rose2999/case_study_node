@@ -10,7 +10,7 @@ const PORT = 3000;
 
 
 associations();
-sequelize.sync({ force: false })
+sequelize.sync({ force: false})
     .then(() => {
         
         console.log("database synced");

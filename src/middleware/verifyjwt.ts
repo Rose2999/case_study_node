@@ -12,10 +12,10 @@ const midddlewareverify = (req: Request, res: Response, next: NextFunction) => {
    
     token = token?.split("Bearer ")[1];
    
-    jwt.verify(token as string, 'my_secret', (err, decoded) => {
-      const { user_reg } = decoded ;
+    jwt.verify(token as string, 'your_secret', (err, decoded) => {
+        const { user_reg} = decoded as { user_reg: string }||0;
    
-      // Check if user_reg_id is equal to '1'
+      
       if (user_reg === '1') {
         req.body.jwt_decoded = decoded;
         next();
