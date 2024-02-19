@@ -2,6 +2,7 @@ import express,{Request,Response} from 'express';
 import  addProducts from "../controllers/products/addProduct"
 import getProducts from '../controllers/products/getProduct';
 
+
 const router = express.Router();
 
 // Route for customers to accept requests from suppliers
