@@ -1,6 +1,7 @@
 import ec_suppliers from '../../models/ec_suppliers';
 import {Request,Response} from 'express';
-import customerRegister from './CustomerRegister';
+import customerRegister from './customerRegister';
+
 
 
 const register=async(req:Request,res:Response)=>{

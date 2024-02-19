@@ -7,7 +7,13 @@ const getProducts = async (req: Request, res: Response): Promise<any> => {
 
     let db: Db = client.db("case_study");
 
+    const supplier_reg_id =req.query.supplier_reg_id;
+    if(!supplier_reg_id){
+        return res.status(422).json({ error: "error" })  
+    }
+
     try {
+        
         const page = parseInt(req.query.page as string) || 1;
         const limit = 5;
         const offset = (page - 1) * limit;
@@ -23,9 +29,10 @@ const getProducts = async (req: Request, res: Response): Promise<any> => {
 
         const searchRegex = new RegExp(req.query.search as string, 'i');
         const findResult2 = await db.collection('products').find({$or:[{product_name:{$regex:searchRegex}}]}).toArray();
+        console.log(findResult2);
         return res.status(200).json({data:findResult2});
     } catch (error) {
-        return res.status(500).json({ error: "Internal server error" });
+        return res.status(400).json({ error: "Internal server error" });
     } finally {
         await client.close(); // Close the MongoDB client connection
     }
