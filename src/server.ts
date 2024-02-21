@@ -10,10 +10,10 @@ import{ connectToMongoDb,stopMongoDb} from "./services/mongodb"
 import productRoutes from "./routes/productRoutes"
 const app: Express = express();
 const PORT = 3000;
-// const corsOptions={
-//     origin:"http://localhost:8080",
-//     methods:"GET",
-// };
+const corsOptions={
+    origin:"http://localhost:8080",
+    methods:"GET",
+};
 
 associations();
 sequelize.sync({ force: false })
@@ -24,7 +24,7 @@ sequelize.sync({ force: false })
     .catch((error) => {
         console.log("error in syncing database", error);
     });
-//app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.json()); 
 
 // Define routes with correct route paths

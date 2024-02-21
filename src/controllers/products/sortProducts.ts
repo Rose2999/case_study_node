@@ -24,9 +24,7 @@ const sortProducts = async (req: Request, res: Response): Promise<any> => {
         return res.status(200).json({ data: findResult });
     } catch (error) {
         return res.status(422).json({ error: "Internal server error" });
-    } finally {
-        await client.close(); // Close the MongoDB client connection
-    }
+    } 
 }
 
 export default sortProducts;
