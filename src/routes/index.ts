@@ -8,7 +8,7 @@ const app=express();
 const router=Router();
 const middlewareapi =(req:Request,res:Response,next:NextFunction)=>{
     if(req.headers['x-api-key']===checkValue){
-        res.setHeader("Set-Cookie",["name = RoseExperionColleague","message = hi"]);
+        res.setHeader("Set-Cookie",["name = Rose","message = hi"]);
         next();
     }
     else {

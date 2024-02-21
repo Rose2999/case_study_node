@@ -1,6 +1,7 @@
 import express,{Request,Response} from 'express';
 import  addProducts from "../controllers/products/addProduct"
 import getProducts from '../controllers/products/getProduct';
+import sortProducts from '../controllers/products/sortProducts';
 
 
 const router = express.Router();
@@ -11,6 +12,11 @@ router.post('/addproduct', async (req:Request, res:Response) => {
 });
 router.get('/getproduct',async(req:Request,res:Response)=>{
    getProducts(req,res);
+
+});
+router.get('/sortproduct',async(req:Request,res:Response)=>{
+   sortProducts(req,res);
+   
 });
 
 export default router;
