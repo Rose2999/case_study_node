@@ -1,6 +1,6 @@
 import express,{Request,Response} from 'express';
-import  addProducts from "../controllers/products/addProduct"
-import getProducts from '../controllers/products/getProduct';
+import addProducts from '../controllers/products/addProduct';
+import getProducts from '../controllers/products/getProduct'
 import sortProducts from '../controllers/products/sortProducts';
 
 
